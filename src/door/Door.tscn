@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu06ritof7ma0"]
+
+[ext_resource type="Script" path="res://src/door/Door.gd" id="1_4h82h"]
+[ext_resource type="Texture2D" uid="uid://cht2kp57wsbqj" path="res://assets/door1.png" id="1_q4kq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m71cc"]
+size = Vector2(15.125, 319)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kx6ko"]
+size = Vector2(80.5, 319.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqqi2"]
+size = Vector2(88.5, 322.5)
+
+[node name="Door" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_4h82h")
+
+[node name="Door1" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_q4kq1")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-35.5625, -1)
+shape = SubResource("RectangleShape2D_m71cc")
+
+[node name="ClosedDoor" type="StaticBody2D" parent="."]
+
+[node name="ClosedDoorCollisionShape2D" type="CollisionShape2D" parent="ClosedDoor"]
+position = Vector2(72.75, -1.25)
+shape = SubResource("RectangleShape2D_kx6ko")
+
+[node name="LeaveArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveArea"]
+position = Vector2(122, 0)
+shape = SubResource("RectangleShape2D_vqqi2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="LeaveArea" to="." method="_on_leave_area_entered"]

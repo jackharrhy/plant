@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bql0cdayedrrm"]
+
+[ext_resource type="Script" path="res://src/scenes/room1.gd" id="1_ed0fq"]
+[ext_resource type="Texture2D" uid="uid://cvqcgajtvm85q" path="res://assets/room1.png" id="2_28xjs"]
+[ext_resource type="PackedScene" uid="uid://ceussuufktvob" path="res://src/bed/Bed.tscn" id="3_f0047"]
+[ext_resource type="PackedScene" uid="uid://bu06ritof7ma0" path="res://src/door/Door.tscn" id="4_lx4iw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ah5"]
+size = Vector2(310, 513)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cifog"]
+size = Vector2(1168, 34.5)
+
+[node name="RootNode" type="Node2D"]
+script = ExtResource("1_ed0fq")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Room1" type="Sprite2D" parent="."]
+position = Vector2(383.5, 255.5)
+scale = Vector2(7.96875, 7.98438)
+texture = ExtResource("2_28xjs")
+
+[node name="Bed" parent="." instance=ExtResource("3_f0047")]
+position = Vector2(305, 360)
+
+[node name="RoomBounds" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="RoomBounds"]
+position = Vector2(-77, 256.5)
+shape = SubResource("RectangleShape2D_d8ah5")
+
+[node name="Floor" type="CollisionShape2D" parent="RoomBounds"]
+position = Vector2(351, 494.25)
+shape = SubResource("RectangleShape2D_cifog")
+
+[node name="PlayerLocation" type="Node2D" parent="."]
+position = Vector2(231, 422)
+
+[node name="Door" parent="." instance=ExtResource("4_lx4iw")]
+position = Vector2(660, 338)
+
+[connection signal="create_player" from="Bed" to="." method="_on_bed_create_player"]
+[connection signal="remove_player" from="Bed" to="." method="_on_bed_remove_player"]
+[connection signal="walked_through_door" from="Door" to="." method="_on_door_walked_through_door"]
