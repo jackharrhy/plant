@@ -1,8 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://k5nlvgruicey"]
+[gd_scene load_steps=6 format=3 uid="uid://k5nlvgruicey"]
 
 [ext_resource type="PackedScene" uid="uid://cdc4ul6c8m0pv" path="res://src/player/Player.tscn" id="1_apcfe"]
+[ext_resource type="Script" path="res://src/scenes/living-room.gd" id="1_w61fy"]
+[ext_resource type="Texture2D" uid="uid://b88m7o2001bmm" path="res://assets/living-room.png" id="2_gcpfl"]
+[ext_resource type="PackedScene" uid="uid://bu06ritof7ma0" path="res://src/door/Door.tscn" id="3_fj2ol"]
+[ext_resource type="PackedScene" uid="uid://dsw2cykcds4q7" path="res://src/door/RevDoor.tscn" id="4_xp35t"]
 
-[node name="living-room" type="Node2D"]
+[node name="LivingRoom" type="Node2D"]
+script = ExtResource("1_w61fy")
+
+[node name="Living-room" type="Sprite2D" parent="."]
+position = Vector2(684, 256)
+scale = Vector2(8, 8)
+texture = ExtResource("2_gcpfl")
+
+[node name="OutsideDoor" parent="." instance=ExtResource("3_fj2ol")]
+position = Vector2(1257, 324)
+
+[node name="RoomDoor" parent="." instance=ExtResource("4_xp35t")]
+position = Vector2(116, 327)
+door_open = true
 
 [node name="Player" parent="." instance=ExtResource("1_apcfe")]
-position = Vector2(158, 269)
+position = Vector2(147, 345)
+
+[node name="FarRightSide" type="Node2D" parent="."]
+position = Vector2(1368, 1)
+
+[connection signal="walked_through_door" from="RoomDoor" to="." method="_on_room_door_walked_through_door"]

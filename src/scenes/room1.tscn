@@ -11,7 +11,7 @@ size = Vector2(310, 513)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cifog"]
 size = Vector2(1168, 34.5)
 
-[node name="RootNode" type="Node2D"]
+[node name="Room" type="Node2D"]
 script = ExtResource("1_ed0fq")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -37,6 +37,9 @@ shape = SubResource("RectangleShape2D_cifog")
 
 [node name="PlayerLocation" type="Node2D" parent="."]
 position = Vector2(231, 422)
+
+[node name="PlayerDoorLocation" type="Node2D" parent="."]
+position = Vector2(654, 438)
 
 [node name="Door" parent="." instance=ExtResource("4_lx4iw")]
 position = Vector2(660, 338)

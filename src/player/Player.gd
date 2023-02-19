@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
+signal camera_bounds_update(left, right)
+
 @export var speed: int = 200
 
 @onready var sprite = get_node("PlayerSprite")
 @onready var animation_player = get_node("AnimationPlayer")
+
+
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -22,3 +26,8 @@ func _physics_process(delta):
 		sprite.flip_h = true
 	elif velocity.x > 0:
 		sprite.flip_h = false
+
+func _on_camera_bounds_update(left, right):
+	var camera = $Camera2D
+	camera.limit_left = left
+	camera.limit_right = right

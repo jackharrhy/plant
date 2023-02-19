@@ -132,3 +132,11 @@ collision_mask = 0
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_fc1cf")
 debug_color = Color(0.329412, 0.607843, 0.384314, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 768
+limit_bottom = 512
+
+[connection signal="camera_bounds_update" from="." to="." method="_on_camera_bounds_update"]
