@@ -2,6 +2,8 @@ extends Node2D
 
 signal scene_change(scene_name, arg)
 
+var player_still_in_bed = false
+
 var player_scene = preload("res://src/player/Player.tscn")
 var player_instance
 
@@ -20,14 +22,20 @@ func make_bed_no_player():
 func init(arg : String):
 	match arg:
 		"door":
+			player_still_in_bed = false
 			create_player($PlayerDoorLocation.position)
 			make_bed_no_player()
-			$Door.open_door(false)
+			$Door.open_door(false, true)
 		"bed":
-			# scene is already setup for bed
-			pass
+			player_still_in_bed = true
+			await get_tree().create_timer(3).timeout
+
+			if player_still_in_bed:
+				$BedLeaveLabel.visible = true
 
 func _on_bed_create_player():
+	player_still_in_bed = false
+	$BedLeaveLabel.visible = false
 	create_player($PlayerLocation.position)
 
 func _on_bed_remove_player():

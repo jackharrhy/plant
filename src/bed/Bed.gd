@@ -5,6 +5,7 @@ signal remove_player
 
 @export var player_sleeping : bool = true
 @export var area_active = true
+@export var bed_left_yet = false
 
 @onready var sprite : Sprite2D = get_node("Bed1")
 

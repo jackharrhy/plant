@@ -15,11 +15,12 @@ scale = Vector2(8, 8)
 texture = ExtResource("2_gcpfl")
 
 [node name="OutsideDoor" parent="." instance=ExtResource("3_fj2ol")]
-position = Vector2(1257, 324)
+position = Vector2(1239, 316)
 
 [node name="RoomDoor" parent="." instance=ExtResource("4_xp35t")]
 position = Vector2(116, 327)
 door_open = true
+visible_when_open = false
 
 [node name="Player" parent="." instance=ExtResource("1_apcfe")]
 position = Vector2(147, 345)

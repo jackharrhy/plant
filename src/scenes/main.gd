@@ -4,6 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	$Room.connect("scene_change", Callable(self, "change_scene"))
+	$Room.init("bed")
 
 func change_scene(scene: String, argument: String):
 	var next_scene = load("res://src/scenes/" + scene + ".tscn").instantiate()

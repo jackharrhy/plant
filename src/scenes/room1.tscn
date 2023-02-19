@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bql0cdayedrrm"]
+[gd_scene load_steps=8 format=3 uid="uid://bql0cdayedrrm"]
 
 [ext_resource type="Script" path="res://src/scenes/room1.gd" id="1_ed0fq"]
 [ext_resource type="Texture2D" uid="uid://cvqcgajtvm85q" path="res://assets/room1.png" id="2_28xjs"]
 [ext_resource type="PackedScene" uid="uid://ceussuufktvob" path="res://src/bed/Bed.tscn" id="3_f0047"]
 [ext_resource type="PackedScene" uid="uid://bu06ritof7ma0" path="res://src/door/Door.tscn" id="4_lx4iw"]
+[ext_resource type="Theme" uid="uid://i1a4jv6ur3fb" path="res://src/scenes/main.tres" id="5_shst4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ah5"]
 size = Vector2(310, 513)
@@ -43,6 +44,17 @@ position = Vector2(654, 438)
 
 [node name="Door" parent="." instance=ExtResource("4_lx4iw")]
 position = Vector2(660, 338)
+
+[node name="BedLeaveLabel" type="Label" parent="."]
+visible = false
+offset_left = 157.0
+offset_top = 238.0
+offset_right = 570.0
+offset_bottom = 278.0
+theme = ExtResource("5_shst4")
+theme_override_colors/font_color = Color(1, 1, 1, 0.698039)
+theme_override_font_sizes/font_size = 40
+text = "press space to leave bed"
 
 [connection signal="create_player" from="Bed" to="." method="_on_bed_create_player"]
 [connection signal="remove_player" from="Bed" to="." method="_on_bed_remove_player"]

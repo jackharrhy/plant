@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://i1a4jv6ur3fb"]
+
+[ext_resource type="FontFile" uid="uid://c30ygsmj6wywr" path="res://assets/Plant_game_font-Regular.otf" id="1_t4sh4"]
+
+[resource]
+default_font = ExtResource("1_t4sh4")
