@@ -56,6 +56,15 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.698039)
 theme_override_font_sizes/font_size = 40
 text = "press space to leave bed"
 
+[node name="GameNameLabel" type="Label" parent="."]
+offset_left = 219.0
+offset_top = 103.0
+offset_right = 547.0
+offset_bottom = 231.0
+theme = ExtResource("5_shst4")
+theme_override_font_sizes/font_size = 150
+text = "plant"
+
 [connection signal="create_player" from="Bed" to="." method="_on_bed_create_player"]
 [connection signal="remove_player" from="Bed" to="." method="_on_bed_remove_player"]
 [connection signal="walked_through_door" from="Door" to="." method="_on_door_walked_through_door"]

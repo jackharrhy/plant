@@ -14,3 +14,7 @@ func init(argument):
 
 func _on_room_door_walked_through_door():
 	scene_change.emit("room1", "door")
+
+
+func _on_middle_room_trigger_area_entered(area):
+	scene_change.emit("meta1", "yeah")

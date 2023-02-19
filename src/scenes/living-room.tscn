@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cdc4ul6c8m0pv" path="res://src/player/Player.tscn" id="1_apcfe"]
 [ext_resource type="Script" path="res://src/scenes/living-room.gd" id="1_w61fy"]
 [ext_resource type="Texture2D" uid="uid://b88m7o2001bmm" path="res://assets/living-room.png" id="2_gcpfl"]
-[ext_resource type="PackedScene" uid="uid://bu06ritof7ma0" path="res://src/door/Door.tscn" id="3_fj2ol"]
 [ext_resource type="PackedScene" uid="uid://dsw2cykcds4q7" path="res://src/door/RevDoor.tscn" id="4_xp35t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0c5w"]
+size = Vector2(275, 513)
 
 [node name="LivingRoom" type="Node2D"]
 script = ExtResource("1_w61fy")
@@ -13,9 +15,6 @@ script = ExtResource("1_w61fy")
 position = Vector2(684, 256)
 scale = Vector2(8, 8)
 texture = ExtResource("2_gcpfl")
-
-[node name="OutsideDoor" parent="." instance=ExtResource("3_fj2ol")]
-position = Vector2(1239, 316)
 
 [node name="RoomDoor" parent="." instance=ExtResource("4_xp35t")]
 position = Vector2(116, 327)
@@ -28,4 +27,13 @@ position = Vector2(147, 345)
 [node name="FarRightSide" type="Node2D" parent="."]
 position = Vector2(1368, 1)
 
+[node name="MiddleRoomTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleRoomTrigger"]
+position = Vector2(835, 256)
+shape = SubResource("RectangleShape2D_f0c5w")
+
 [connection signal="walked_through_door" from="RoomDoor" to="." method="_on_room_door_walked_through_door"]
+[connection signal="area_entered" from="MiddleRoomTrigger" to="." method="_on_middle_room_trigger_area_entered"]

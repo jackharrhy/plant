@@ -31,11 +31,13 @@ func init(arg : String):
 			await get_tree().create_timer(3).timeout
 
 			if player_still_in_bed:
+				$GameNameLabel.visible = false
 				$BedLeaveLabel.visible = true
 
 func _on_bed_create_player():
 	player_still_in_bed = false
 	$BedLeaveLabel.visible = false
+	$GameNameLabel.visible = false
 	create_player($PlayerLocation.position)
 
 func _on_bed_remove_player():
